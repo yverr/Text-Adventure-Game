@@ -18,7 +18,7 @@ public class Main {
         String name = sc.nextLine();
         System.out.println("+=============================+");
 
-        Character c = new Character(name, "Swordsman", "enter", 9300,4600);
+        Character c = new Character(name, "Swordsman", 0, 9300,4600);
 
         System.out.println();
 
@@ -78,6 +78,7 @@ public class Main {
 
         c.skillWindow(); //Shows the player the skill window
 
+        /* 
         System.out.println();
         System.out.print("|| After checking your status window, you've pondered for a long time before ultimately deciding to place the spawnpoint of the [Regression] skill here. \n ");
         sc.nextLine();
@@ -89,9 +90,10 @@ public class Main {
                         "\n" + //
                         "+============================================================+");
         sc.nextLine();
+        */
 
         System.out.println();
-        System.out.print("|| Seeing the notificaton, you finally went to rest. ");
+        System.out.print("|| After settling in, you finally went to rest. ");
         sc.nextLine();
 
         System.out.println();
@@ -106,9 +108,43 @@ public class Main {
         System.out.print(">> " + c.name + ": !");
         sc.nextLine();
 
+        //for the regression skill , the do-while loop starts here.
+
         System.out.println();
         System.out.print("|| You woke up after suddenly hearing a commotion outside.");
         sc.nextLine();
+
+        System.out.println();
+        System.out.print("|| You rushed downstairs and saw mosters in the distance-ready to attack!");
+        sc.nextLine();
+
+        // System Notification
+        String quest = "<< ! [New] Side Quest: Kill all the Demonic Monsters attacking the Inn. >> ";
+        c.systemNotification(quest);
+
+        Quest q = new Quest(name, name, 0, 0, 0, true);
+
+        //the if else statements are seperated to check if the user input is valid. If not, the game ends. idk if this is right either
+
+        if (q.continueGame){
+            q.questOne();
+        } else {
+            c.endGame();
+        }
+        
+        if (q.continueGame){
+            q.dialoguOne();
+            q.questTwo();
+            q.dialogueTwo();
+        } else if (!q.continueGame || c.hp < 5500 || c.mp < 2000){
+            c.endGame();
+        }
+
+        if (q.continueGame){
+            q.mainQuest();
+        }  else if (!q.continueGame || c.hp < 5500 || c.mp < 2000){
+            c.endGame();
+        }
 
         sc.close();
     }

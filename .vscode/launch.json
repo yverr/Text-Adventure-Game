@@ -8,6 +8,13 @@
             "type": "java",
             "name": "Main",
             "request": "launch",
+            "mainClass": "test.Main",
+            "projectName": "AdventureGame1_35e7eb36"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
             "mainClass": "TextAdventureGame.Main",
             "projectName": "AdventureGame1_35e7eb36"
         },
